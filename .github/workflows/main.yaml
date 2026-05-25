@@ -16,18 +16,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
 
-    # gradlew ဖိုင် မရှိပါက အလိုအလျောက် သတ်မှတ်တည်ဆောက်ပေးခြင်း
-    - name: Ensure gradlew exists
-      run: |
-        if [ ! -f ./gradlew ]; then
-          gradle wrapper
-        fi
-        chmod +x ./gradlew
+    # GitHub Actions ရဲ့ အဆင်သင့်ပါဝင်သော Gradle စနစ်ကို အသုံးပြုခြင်း
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
 
+    # gradlew ဖိုင်မလိုဘဲ တိုက်ရိုက် build လုပ်ခြင်း
     - name: Build with Gradle
-      run: ./gradlew assembleDebug
+      run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
