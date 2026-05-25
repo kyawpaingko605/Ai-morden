@@ -1,0 +1,1 @@
+<resources> <style name="Theme.MinGaLarAI" parent="android:Theme.Material3.Dark"> <item name="android:windowBackground">@color/deep_charcoal</item> </style> </resources>
