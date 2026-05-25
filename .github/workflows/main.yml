@@ -18,15 +18,17 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    # အပြင်ဆုံးမှာ ရှိနေတဲ့ app folder ထဲ တိုက်ရိုက်ဝင်ပြီး gradlew ကို ပုံစံသွင်းခြင်း
-    - name: Grant execute permission for gradlew
-      run: chmod +x ./gradlew
+    # gradlew ဖိုင် မရှိပါက အလိုအလျောက် သတ်မှတ်တည်ဆောက်ပေးခြင်း
+    - name: Ensure gradlew exists
+      run: |
+        if [ ! -f ./gradlew ]; then
+          gradle wrapper
+        fi
+        chmod +x ./gradlew
 
-    # Build လုပ်ရန် အမိန့်ပေးခြင်း
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
-    # ထွက်လာမယ့် APK ဖိုင်ကို သိမ်းဆည်းခြင်း
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
