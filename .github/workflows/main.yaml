@@ -17,16 +17,17 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # အခြေခံ Gradle Setup ကို ပုံမှန်အတိုင်းပဲ လုပ်ဆောင်ခြင်း
+    # ပုံမှန်အတိုင်း အခြေခံ Gradle Setup ပြုလုပ်ခြင်း
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    # ဤနေရာတွင်သာ Folder ထဲဝင်ပြီး Build လုပ်ရန် အမိန့်ပေးခြင်း
+    # အဆင့်ဆင့် Folder ထဲဝင်ပြီး အမှားကင်းစွာ တိုက်ရိုက် Build လုပ်ခြင်း
     - name: Build with Gradle
-      working-directory: Ai-morden
-      run: gradle assembleDebug
+      run: |
+        cd Ai-morden
+        gradle assembleDebug
 
-    # APK ဖိုင်ကို လမ်းကြောင်းမှန်ကန်စွာဖြင့် သိမ်းဆည်းခြင်း
+    # ထွက်လာမယ့် APK ကို လမ်းကြောင်းမှန်ကန်စွာဖြင့် သိမ်းဆည်းခြင်း
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
