@@ -1,1 +1,0 @@
-package com.mingalarai data class Message(val text: String = "")
