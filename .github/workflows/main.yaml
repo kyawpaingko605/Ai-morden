@@ -17,19 +17,18 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # GitHub Actions ကို Ai-morden Folder ထဲဝင်ပြီး Gradle Setup လုပ်ခိုင်းခြင်း
+    # Folder လမ်းကြောင်းကို အတိအကျ ညွှန်ပြပြီး Setup လုပ်ခြင်း
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
         build-root-directory: Ai-morden
 
-    # Folder ထဲကို 'cd' နဲ့ အရင်ဝင်ပြီးမှ Build လုပ်ခိုင်းခြင်း
+    # working-directory ကို သီးသန့်သတ်မှတ်ပြီး အမှားကင်းစွာ Build လုပ်ခြင်း
     - name: Build with Gradle
-      run: |
-        cd Ai-morden
-        gradle assembleDebug
+      working-directory: Ai-morden
+      run: gradle assembleDebug
 
-    # ထွက်လာမယ့် APK ကို လမ်းကြောင်းမှန်အောင် သတ်မှတ်ပြီး သိမ်းဆည်းခြင်း
+    # ထွက်လာမယ့် APK ကို လမ်းကြောင်းမှန်မှန်ဖြင့် သိမ်းဆည်းခြင်း
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
