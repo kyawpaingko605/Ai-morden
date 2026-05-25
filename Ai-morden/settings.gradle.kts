@@ -1,10 +1,9 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
-
 rootProject.name = "Ai-morden"
-
-include (":app")
+include(":app")
